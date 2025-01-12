@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placement Test </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        .quiz-container {
+            width: 90%;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background: rgb(238,174,202);
+            background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+        }
+        h1 {
+            text-align: center;
+            color: #007BFF;
+        }
+        .timer {
+            color: red;
+            font-size: 18px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .question p {
+            font-weight: bold;
+        }
+        .options label {
+            display: block;
+            margin: 5px 0;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+            display: none;
+        }
+        .incorrect {
+            color: red;
+        }
+        .correct {
+            color: green;
+        }
+        .question-result {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Placement Test</h1>
+        <div class="timer" id="timer">Time remaining: 60 seconds</div>
+
+        <div class="question" id="question-1">
+            <p>1- What is the smallest unit of life ?</p>
+            <div class="options">
+                <label><input type="radio" name="q1" value="cell"> cell </label>
+                <label><input type="radio" name="q1" value="Organ"> Organ </label>
+                <label><input type="radio" name="q1" value="Tissue"> Tissue </label>
+                <label><input type="radio" name="q1" value="Organism"> Organism </label>
+            </div>
+        </div>
+
+        <div class="question" id="question-2" style="display: none;">
+            <p>2- Which organ is primarily responsible for detoxify chemicals in the body ?</p>
+            <div class="options">
+                <label><input type="radio" name="q2" value="Lung"> Lung </label>
+                <label><input type="radio" name="q2" value="Heart"> Heart </label>
+                <label><input type="radio" name="q2" value="Kidney"> Kidney </label>
+                <label><input type="radio" name="q2" value="liver"> liver </label>
+            </div>
+        </div>
+
+        <div class="question" id="question-3" style="display: none;">
+            <p>3- What enzyme in saliva breaks down starch ?</p>
+            <div class="options">
+                <label><input type="radio" name="q3" value="Pepsin"> Pepsin </label>
+                <label><input type="radio" name="q3" value="Amylase"> Amylase </label>
+                <label><input type="radio" name="q3" value="Lipase"> Lipase </label>
+                <label><input type="radio" name="q3" value="Lactase"> Lactase </label>
+            </div>
+        </div>
+
+        <div class="question" id="question-4" style="display: none;">
+            <p>4- Which mineral is responsible for strong bones and teeth ?</p>
+            <div class="options">
+                <label><input type="radio" name="q4" value="Iron"> Iron </label>
+                <label><input type="radio" name="q4" value="Potassium"> Potassium </label>
+                <label><input type="radio" name="q4" value="calcium"> calcium </label>
+                <label><input type="radio" name="q4" value="Magnesium"> Magnesium </label>
+            </div>
+        </div>
+
+        <div class="question" id="question-5" style="display: none;">
+            <p>5- What is the function of DNA ?</p>
+            <div class="options">
+                <label><input type="radio" name="q5" value="Energy production"> Energy production </label>
+                <label><input type="radio" name="q5" value="Protein digestion"> Protein digestion </label>
+                <label><input type="radio" name="q5" value="Blood filtration"> Blood filtration </label>
+                <label><input type="radio" name="q5" value="code for genetic information"> code for genetic information </label>
+            </div>
+        </div>
+
+        <div class="question" id="question-6" style="display: none;">
+            <p>6- The condition in which the amount of urine is decreased is called . . . . . </p>
+            <div class="options">
+                <label><input type="radio" name="q6" value="Anuria"> Anuria </label>
+                <label><input type="radio" name="q6" value="Oliguria"> Oliguria  </label>
+                <label><input type="radio" name="q6" value="Polyuria"> Polyuria </label>
+                <label><input type="radio" name="q6" value="Glycosuria"> Glycosuria </label>
+            </div>
+        </div>
+
+        <div class="question" id="question-7" style="display: none;">
+            <p>7- Vagus nerve is cranial nerve . . . . . </p>
+            <div class="options">
+                <label><input type="radio" name="q7" value="VIII"> VIII </label>
+                <label><input type="radio" name="q7" value="IX"> IX </label>
+                <label><input type="radio" name="q7" value="X"> X </label>
+                <label><input type="radio" name="q7" value="XI"> XI </label>
+            </div>
+        </div>
+
+        <div class="question" id="question-8" style="display: none;">
+            <p>8- Master of endocrine glands is . . . . .</p>
+            <div class="options">
+                <label><input type="radio" name="q8" value="pituitary gland"> pituitary gland </label>
+                <label><input type="radio" name="q8" value="Parathyroid glands"> Parathyroid glands </label>
+                <label><input type="radio" name="q8" value="adrenal gland"> adrenal gland </label>
+                <label><input type="radio" name="q8" value="Pancreas"> Pancreas </label>
+            </div>
+        </div>
+
+        <div class="question" id="question-9" style="display: none;">
+            <p>9- Which gland is also known as suprarenal gland ?</p>
+            <div class="options">
+                <label><input type="radio" name="q9" value="Thyroid gland"> Thyroid gland </label>
+                <label><input type="radio" name="q9" value="adrenal gland"> adrenal gland </label>
+                <label><input type="radio" name="q9" value="Pancreas"> Pancreas </label>
+                <label><input type="radio" name="q9" value=" Posterior interventricular"> pituitary gland </label>
+            </div>
+        </div>
+
+        <div class="question" id="question-10" style="display: none;">
+            <p>10- Which of the following isn't a symptom of DM ?</p>
+            <div class="options">
+                <label><input type="radio" name="q10" value="insomnia"> insomnia </label>
+                <label><input type="radio" name="q10" value="Polyuria"> Polyuria </label>
+                <label><input type="radio" name="q10" value="Polydipsia"> Polydipsia </label>
+                <label><input type="radio" name="q10" value="Polyphagia"> Polyphagia </label>
+            </div>
+        </div>
+
+        <div class="question" id="question-11" style="display: none;">
+            <p>11- Difficulty in breathing is known as . . . . .</p>
+            <div class="options">
+                <label><input type="radio" name="q11" value="Posterior descending"> Tachypnea </label>
+                <label><input type="radio" name="q11" value="Tachycardia"> Tachycardia </label>
+                <label><input type="radio" name="q11" value="Apnea"> Apnea </label>
+                <label><input type="radio" name="q11" value="dyspnea"> dyspnea </label>
+            </div>
+        </div>
+
+        <div class="question" id="question-12" style="display: none;">
+            <p>12- Mature RBCs survive for . . . . . days in the circulation</p>
+            <div class="options">
+                <label><input type="radio" name="q12" value="2 to 4 days"> 2 to 4 days </label>
+                <label><input type="radio" name="q12" value="3 months"> 3 months </label>
+                <label><input type="radio" name="q12" value="120 days"> 120 days </label>
+                <label><input type="radio" name="q12" value="11 to 14 days"> 11 to 14 days </label>
+            </div>
+        </div>
+
+        <div class="question" id="question-13" style="display: none;">
+            <p>13- Which of these blood cells help in clotting ? </p>
+            <div class="options">
+                <label><input type="radio" name="q13" value="Red blood cells"> Red blood cells </label>
+                <label><input type="radio" name="q13" value="White blood cells"> White blood cells </label>
+                <label><input type="radio" name="q13" value="platelets"> platelets </label>
+                <label><input type="radio" name="q13" value="Plasma"> Plasma</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-14" style="display: none;">
+            <p>14- The first part of the small intestine is . . . . .  </p>
+            <div class="options">
+                <label><input type="radio" name="q14" value="Jejunum"> Jejunum </label>
+                <label><input type="radio" name="q14" value="Ileum"> Ileum </label>
+                <label><input type="radio" name="q14" value="duodenum"> duodenum </label>
+                <label><input type="radio" name="q14" value="Caecum"> Caecum </label>
+            </div>
+        </div>
+
+        <div class="question" id="question-15" style="display: none;">
+            <p>15- Covering of the heart is known as . . . . .  </p>
+            <div class="options">
+                <label><input type="radio" name="q15" value="pericardium"> pericardium </label>
+                <label><input type="radio" name="q15" value="Pleura"> Pleura</label>
+                <label><input type="radio" name="q15" value="Meninges"> Meninges </label>
+                <label><input type="radio" name="q15" value="Peritoneum"> Peritoneum </label>
+            </div>
+        </div>
+
+        <div class="question" id="question-16" style="display: none;">
+            <p>16- Which bacteria is known as (( acid fast )) ? </p>
+            <div class="options">
+                <label><input type="radio" name="q16" value="E. Coli"> E. Coli </label>
+                <label><input type="radio" name="q16" value="mycobacterium tuberculosis"> mycobacterium tuberculosis </label>
+                <label><input type="radio" name="q16" value="Staph. Aureus"> Staph. Aureus </label>
+                <label><input type="radio" name="q16" value="Strept. Pneumonia"> Strept. Pneumonia </label>
+            </div>
+        </div>
+
+        <div class="question" id="question-17" style="display: none;">
+            <p> 17- Which of the following is not a viral disease ? </p>
+            <div class="options">
+                <label><input type="radio" name="q17" value="typhoid"> typhoid </label>
+                <label><input type="radio" name="q17" value="Influenza"> Influenza </label>
+                <label><input type="radio" name="q17" value="Hepatitis"> Hepatitis </label>
+                <label><input type="radio" name="q17" value="AIDS"> AIDS </label>
+            </div>
+        </div>
+
+        <div class="question" id="question-18" style="display: none;">
+            <p>18- Disease caused by deficiency of iodine . . . . .  </p>
+            <div class="options">
+                <label><input type="radio" name="q18" value="Beri beri"> Beri beri </label>
+                <label><input type="radio" name="q18" value="Rickets"> Rickets </label>
+                <label><input type="radio" name="q18" value="AIDS"> AIDS </label>
+                <label><input type="radio" name="q18" value="goiter"> goiter </label>
+            </div>
+        </div>
+
+        <div class="question" id="question-19" style="display: none;">
+            <p>19- Which condition is indicated by positive Murphey sign ?</p>
+            <div class="options">
+                <label><input type="radio" name="q19" value="Appendicitis"> Appendicitis </label>
+                <label><input type="radio" name="q19" value="cholecystitis"> cholecystitis </label>
+                <label><input type="radio" name="q19" value="Pancreatitis"> Pancreatitis </label>
+                <label><input type="radio" name="q19" value="Peritonitis"> Peritonitis </label>
+            </div>
+        </div>
+
+        <div class="question" id="question-20" style="display: none;">
+            <p>20- The largest lymph node in the body is . . . . . </p>
+            <div class="options">
+                <label><input type="radio" name="q20" value="Inguinal lymph node"> Inguinal lymph node </label>
+                <label><input type="radio" name="q20" value="Submandibular lymph node"> Submandibular lymph node </label>
+                <label><input type="radio" name="q20" value="Axillary lymph node"> Axillary lymph node</label>
+                <label><input type="radio" name="q20" value="spleen"> spleen </label>
+            </div>
+        </div>
+
+        
+        <div class="question" id="question-21">
+            <p>21- What is the shape of DNA?</p>
+            <div class="options">
+                <label><input type="radio" name="q21" value="Single helix"> Single helix</label>
+                <label><input type="radio" name="q21" value="Double helix"> Double helix</label>
+                <label><input type="radio" name="q21" value="Multiple helix"> Multiple helix</label>
+                <label><input type="radio" name="q21" value="None of the above"> None of the above</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-22" style="display: none;">
+            <p>22- What percent of the human body is water?</p>
+            <div class="options">
+                <label><input type="radio" name="q22" value="40%"> 40%</label>
+                <label><input type="radio" name="q22" value="50%"> 50%</label>
+                <label><input type="radio" name="q22" value="60%"> 60%</label>
+                <label><input type="radio" name="q22" value="70%"> 70%</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-23" style="display: none;">
+            <p>23- Total number of bones in the adult body?</p>
+            <div class="options">
+                <label><input type="radio" name="q23" value="206 bones"> 206 bones</label>
+                <label><input type="radio" name="q23" value="260 bones"> 260 bones</label>
+                <label><input type="radio" name="q23" value="300 bones"> 300 bones</label>
+                <label><input type="radio" name="q23" value="350 bones"> 350 bones</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-24" style="display: none;">
+            <p>24- What is the smallest bone of the human body?</p>
+            <div class="options">
+                <label><input type="radio" name="q24" value="Femur"> Femur</label>
+                <label><input type="radio" name="q24" value="Radius"> Radius</label>
+                <label><input type="radio" name="q24" value="Ulna"> Ulna</label>
+                <label><input type="radio" name="q24" value="Stapes"> Stapes</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-25" style="display: none;">
+            <p>25- What is the largest external organ of the human body?</p>
+            <div class="options">
+                <label><input type="radio" name="q25" value="Liver"> Liver</label>
+                <label><input type="radio" name="q25" value="Skin"> Skin</label>
+                <label><input type="radio" name="q25" value="Kidney"> Kidney</label>
+                <label><input type="radio" name="q25" value="Stomach"> Stomach</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-26" style="display: none;">
+            <p>26- What is the largest internal organ of the human body?</p>
+            <div class="options">
+                <label><input type="radio" name="q26" value="Liver"> Liver</label>
+                <label><input type="radio" name="q26" value="Skin"> Skin</label>
+                <label><input type="radio" name="q26" value="Kidney"> Kidney</label>
+                <label><input type="radio" name="q26" value="Stomach"> Stomach</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-27" style="display: none;">
+            <p>27- What is the amount of blood in a normal human body?</p>
+            <div class="options">
+                <label><input type="radio" name="q27" value="4 liter"> 4 liter</label>
+                <label><input type="radio" name="q27" value="5 liter"> 5 liter</label>
+                <label><input type="radio" name="q27" value="8 liter"> 8 liter</label>
+                <label><input type="radio" name="q27" value="9 liter"> 9 liter</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-28" style="display: none;">
+            <p>28- Which structure prevents food from entering the trachea during swallowing?</p>
+            <div class="options">
+                <label><input type="radio" name="q28" value="Trachea"> Trachea</label>
+                <label><input type="radio" name="q28" value="Alveoli"> Alveoli</label>
+                <label><input type="radio" name="q28" value="Diaphragm"> Diaphragm</label>
+                <label><input type="radio" name="q28" value="Epiglottis"> Epiglottis</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-29" style="display: none;">
+            <p>29- What is the purpose of surfactant in the alveoli?</p>
+            <div class="options">
+                <label><input type="radio" name="q29" value="Gas exchange"> Gas exchange</label>
+                <label><input type="radio" name="q29" value="Preventing collapse"> Preventing collapse</label>
+                <label><input type="radio" name="q29" value="Filtration"> Filtration</label>
+                <label><input type="radio" name="q29" value="Mucus production"> Mucus production</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-30" style="display: none;">
+            <p>30- Where is the majority of iron found in the body?</p>
+            <div class="options">
+                <label><input type="radio" name="q30" value="Bone"> Bone</label>
+                <label><input type="radio" name="q30" value="Myoglobin"> Myoglobin</label>
+                <label><input type="radio" name="q30" value="Hemoglobin"> Hemoglobin</label>
+                <label><input type="radio" name="q30" value="Bilirubin"> Bilirubin</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-31" style="display: none;">
+            <p>31- Which organism commonly produces meningitis in an adolescent?</p>
+            <div class="options">
+                <label><input type="radio" name="q31" value="E. coli"> E. coli</label>
+                <label><input type="radio" name="q11" value="Staphylococcus"> Staphylococcus</label>
+                <label><input type="radio" name="q31" value="Meningococcus"> Meningococcus</label>
+                <label><input type="radio" name="q31" value="H. influenza"> H. influenza</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-32" style="display: none;">
+            <p>32- Which of the following is the most common sleep disorder in the population?</p>
+            <div class="options">
+                <label><input type="radio" name="q32" value="Restless legs syndrome"> Restless legs syndrome</label>
+                <label><input type="radio" name="q32" value="Insomnia"> Insomnia</label>
+                <label><input type="radio" name="q32" value="Obstructive sleep apnea"> Obstructive sleep apnea</label>
+                <label><input type="radio" name="q32" value="Narcolepsy"> Narcolepsy</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-33" style="display: none;">
+            <p>33- Which of the following structures have been implicated in the generation of sleep?</p>
+            <div class="options">
+                <label><input type="radio" name="q33" value="Brainstem reticular formation"> Brainstem reticular formation</label>
+                <label><input type="radio" name="q33" value="Midbrain"> Midbrain</label>
+                <label><input type="radio" name="q33" value="Subthalamus"> Subthalamus</label>
+                <label><input type="radio" name="q33" value="Basal forebrain"> Basal forebrain</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-34" style="display: none;">
+            <p>34- Fat soluble vitamins are ..</p>
+            <div class="options">
+                <label><input type="radio" name="q34" value="Vitamins A, B"> Vitamins A, B</label>
+                <label><input type="radio" name="q34" value="Vitamins B, C"> Vitamins B, C</label>
+                <label><input type="radio" name="q34" value="Vitamins A, K, E, D"> Vitamins A, K, E, D</label>
+                <label><input type="radio" name="q34" value="Vitamins A, B, C, D"> Vitamins A, B, C, D</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-35" style="display: none;">
+            <p>35- Which vitamin is used as an antioxidant?</p>
+            <div class="options">
+                <label><input type="radio" name="q35" value="Vitamin A"> Vitamin A</label>
+                <label><input type="radio" name="q35" value="Vitamin C"> Vitamin C</label>
+                <label><input type="radio" name="q35" value="Vitamin D"> Vitamin D</label>
+                <label><input type="radio" name="q35" value="Vitamin E"> Vitamin E</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-36" style="display: none;">
+            <p>36- Which vitamin is essential for maintaining healthy vision?</p>
+            <div class="options">
+                <label><input type="radio" name="q36" value="Vitamin A"> Vitamin A</label>
+                <label><input type="radio" name="q36" value="Vitamin C"> Vitamin C</label>
+                <label><input type="radio" name="q36" value="Vitamin D"> Vitamin D</label>
+                <label><input type="radio" name="q36" value="Vitamin E"> Vitamin E</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-37" style="display: none;">
+            <p>37- What is the most sensitive structure of the eye that contains no blood vessels?</p>
+            <div class="options">
+                <label><input type="radio" name="q37" value="Retina"> Retina</label>
+                <label><input type="radio" name="q37" value="Iris"> Iris</label>
+                <label><input type="radio" name="q37" value="Cornea"> Cornea</label>
+                <label><input type="radio" name="q37" value="Ciliary body"> Ciliary body</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-38" style="display: none;">
+            <p>38- Horner's syndrome includes all of the following except:</p>
+            <div class="options">
+                <label><input type="radio" name="q38" value="Absent corneal reflex"> Absent corneal reflex</label>
+                <label><input type="radio" name="q38" value="Miosis"> Miosis</label>
+                <label><input type="radio" name="q38" value="Anhidrosis"> Anhidrosis</label>
+                <label><input type="radio" name="q38" value="Enophthalmos"> Enophthalmos</label>
+                <label><input type="radio" name="q38" value="Ptosis"> Ptosis</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-39" style="display: none;">
+            <p>39- The hormone secreted by the kidney is ..</p>
+            <div class="options">
+                <label><input type="radio" name="q39" value="Erythropoietin"> Erythropoietin</label>
+                <label><input type="radio" name="q39" value="Gastrin"> Gastrin</label>
+                <label><input type="radio" name="q39" value="Secretin"> Secretin</label>
+                <label><input type="radio" name="q39" value="Aldosterone"> Aldosterone</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-40" style="display: none;">
+            <p>40- PH of fresh urine is about ..</p>
+            <div class="options">
+                <label><input type="radio" name="q40" value="7.1"> 7.1</label>
+                <label><input type="radio" name="q40" value="6"> 6</label>
+                <label><input type="radio" name="q40" value="8.4"> 8.4</label>
+                <label><input type="radio" name="q40" value="None of the above"> None of the above</label>
+            </div>
+        </div>
+
+        <button class="btn" id="nextBtn" onclick="nextQuestion()">Next Question</button>
+        <button class="btn" id="submitBtn" onclick="evaluateQuiz()" style="display: none;">Submit Quiz</button>
+
+        <div class="result" id="result">
+            <h2>Results</h2>
+            <div id="score"></div>
+            <div id="answers-summary"></div>
+        </div>
+    </div>
+
+    <script>
+        let currentQuestion = 1;
+        const totalQuestions = 40;
+        let score = 0;
+        let timerInterval;
+        const answers = {
+            q1: "cell",
+            q2: "liver",
+            q3: "Amylase",
+            q4: "calcium",
+            q5: "code for genetic information",
+            q6: "Oliguria",
+            q7: "X",
+            q8: "pituitary gland",
+            q9: "adrenal gland",
+            q10: "insomnia",
+            q11: "dyspnea",
+            q12: "120 days",
+            q13: "platelets",
+            q14: "duodenum",
+            q15: "pericardium",
+            q16: "mycobacterium tuberculosis",
+            q17: "typhoid",
+            q18: "goiter",
+            q19: "cholecystitis",
+            q20: "spleen",
+            q21: "Double helix",
+            q22: "60%",
+            q23: "206 bones",
+            q24: "Stapes",
+            q25: "Skin",
+            q26: "Liver",
+            q27: "5 liter",
+            q28: "Epiglottis",
+            q29: "Preventing collapse",
+            q30: "Hemoglobin",
+            q31: "Meningococcus",
+            q32: "Insomnia",
+            q33: "Subthalamus",
+            q34: "Vitamins A, K, E, D",
+            q35: "Vitamin E",
+            q36: "Vitamin A",
+            q37: "Cornea",
+            q38: "Absent corneal reflex",
+            q39: "Erythropoietin",
+            q40: "6"
+        };
+
+        function showQuestion() {
+            document.querySelectorAll('.question').forEach((q, index) => {
+                q.style.display = index + 1 === currentQuestion ? 'block' : 'none';
+            });
+            document.getElementById('nextBtn').style.display = currentQuestion < totalQuestions ? 'block' : 'none';
+            document.getElementById('submitBtn').style.display = currentQuestion === totalQuestions ? 'block' : 'none';
+        }
+    
+        function nextQuestion() {
+            // Increase the current question counter
+            currentQuestion++;
+    
+            // Reset the timer
+            clearInterval(timerInterval); // Stop the current timer
+            startTimer(); // Start the timer from the beginning
+    
+            // Show the next question
+            showQuestion();
+        }
+    
+        function startTimer() {
+    let timeRemaining = 60;
+    document.getElementById('timer').textContent = `Time remaining: ${timeRemaining} seconds`;
+    timerInterval = setInterval(() => {
+        timeRemaining--;
+        document.getElementById('timer').textContent = `Time remaining: ${timeRemaining} seconds`;
+        if (timeRemaining <= 0) {
+            clearInterval(timerInterval);
+            if (currentQuestion < totalQuestions) {
+                nextQuestion(); // الانتقال إلى السؤال التالي
+            } else {
+                evaluateQuiz(); // إنهاء الاختبار إذا كانت آخر سؤال
+            }
+        }
+    }, 1000);
+}
+
+    
+        function evaluateQuiz() {
+            score = 0;
+            let summary = '';
+    
+            for (let i = 1; i <= totalQuestions; i++) {
+                const selectedOption = document.querySelector(`input[name="q${i}"]:checked`);
+                const correctAnswer = answers[`q${i}`];
+                const questionElement = document.getElementById(`question-${i}`);
+                const options = document.querySelectorAll(`input[name="q${i}"]`);
+                let questionSummary = `<p><strong>Question ${i}: </strong>${questionElement.querySelector('p').innerText}</p>`;
+    
+                options.forEach(option => {
+                    const optionLabel = option.parentElement;
+                    if (option.value === correctAnswer) {
+                        optionLabel.style.color = 'green';
+                    } else if (selectedOption && selectedOption.value === option.value) {
+                        optionLabel.style.color = 'red';
+                    }
+                });
+    
+                questionSummary += `<div>Answer: <strong>${selectedOption ? selectedOption.value : 'None selected'}</strong></div>`;
+                questionSummary += `<div>Correct answer: <strong>${correctAnswer}</strong></div>`;
+    
+                if (selectedOption && selectedOption.value === correctAnswer) {
+                    score++;
+                    summary += questionSummary + `<p class="correct">Correct</p>`;
+                } else {
+                    summary += questionSummary + `<p class="incorrect">Incorrect</p>`;
+                }
+            }
+    
+            document.getElementById('score').textContent = `Your score: ${score} out of ${totalQuestions}`;
+            document.getElementById('answers-summary').innerHTML = summary;
+            document.getElementById('result').style.display = 'block';
+            document.getElementById('timer').style.display = 'none'; 
+            document.querySelectorAll('.question').forEach((q) => q.style.display = 'none');
+    
+            clearInterval(timerInterval);
+        }
+    
+        window.onload = function() {
+            showQuestion();
+            startTimer();
+        };
+    </script>
+    
+</body>
+</html>
